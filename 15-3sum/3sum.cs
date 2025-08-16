@@ -1,27 +1,11 @@
 public class Solution
 {
-    public void BubbleSort(ref int[] nums)
-    {
-        // Sorting
-        for (int i = 0; i < nums.Length - 1; i++)
-        {
-            for (int j = 0; j < nums.Length - i - 1; j++)
-            {
-                if (nums[j] > nums[j + 1])
-                {
-                    int temp = nums[j];
-                    nums[j] = nums[j + 1];
-                    nums[j + 1] = temp;
-                }
-            }
-        }
-    }
     public IList<IList<int>> ThreeSum(int[] nums)
     {
         IList<IList<int>> output = new List<IList<int>>();
 
         // Sorting 
-        BubbleSort(ref nums);
+        Array.Sort(nums, (a, b) => a.CompareTo(b));
 
         // Prevent Duplicates 
         HashSet<string> ProcessedValues = new HashSet<string>();
@@ -44,7 +28,7 @@ public class Solution
                 else if (temp == 0)
                 {
                     var targetArray = new int[] { nums[j], nums[k], nums[i] };
-                    BubbleSort(ref targetArray);
+                    Array.Sort(targetArray, (a, b) => a.CompareTo(b));;
                     if (!ProcessedValues.Contains($"{targetArray[0]}{targetArray[1]}{targetArray[2]}"))
                     {
                         ProcessedValues.Add($"{targetArray[0]}{targetArray[1]}{targetArray[2]}");
